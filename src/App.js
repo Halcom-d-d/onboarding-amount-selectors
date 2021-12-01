@@ -1,23 +1,21 @@
-import logo from './logo.svg';
 import './App.css';
+import AmountSelector from "./components/AmountSelector";
+import {useEffect, useState} from "react";
+import Data from "./components/Data";
 
 function App() {
+
+  const defaultFilters = {amountFrom: 10.00, amountTo: 100.00};
+  const [filters, setFilters] = useState(defaultFilters);
+
+  const filterLog = useEffect(() => {
+      console.log('useEffect', filters);
+  }, [filters]);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <AmountSelector filters={filters}/>
+      <Data filters={filters}/>
     </div>
   );
 }
